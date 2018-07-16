@@ -1,0 +1,264 @@
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:700);
+
+	body{
+		font-family: 'Libre Baskerville', serif;
+		background-color: #eee;
+		background-image: linear-gradient(-45deg, #fff 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, #fff 50%, #fff 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+		-webkit-background-size: 4px 4px;
+		-moz-background-size: 4px 4px;
+		background-size: 4px 4px;
+	  	color: #999;
+	}
+
+	#main-lock {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: 100%;
+	    width: 100%;
+	    background-color: white;
+	}
+
+	#lock-plate{
+		padding: 30px 0;
+		border: 1px solid #cfd3d6;
+		background: #ccc;
+		text-align: center;
+		width: 486px;
+		background: -webkit-linear-gradient(top, #eee 0%,#949ba0 100%);
+		background: linear-gradient(to bottom, #eee 0%,#949ba0 100%);
+		border-radius: 4px;
+		margin: 50px auto;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+		position: relative;
+	}
+
+	#lock-plate span{
+		display: block;
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		border-radius: 10px;
+		box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.6), inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+		background: #bdc1c4;
+	}
+
+	#lock-plate span:first-child{
+		top: 9px;
+		left: 9px;
+	}
+
+	#lock-plate span:nth-child(2){
+		top: 9px;
+		right: 9px;
+	}
+
+	#lock-plate span:nth-child(3){
+		bottom: 9px;
+		left: 9px;
+	}
+
+	#lock-plate span:nth-child(4){
+		bottom: 9px;
+		right: 9px;
+	}
+
+	#lock-wrapper{
+		width: 396px;
+		padding: 0 20px 0 8px;
+		border-radius: 7px;
+		height: 120px;
+		border: 1px solid rgba(255, 255, 255, 0.6);
+		box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);
+		background: -webkit-linear-gradient(top, #c4c4c4 0%,#676767 100%);
+		background: linear-gradient(to bottom, #c4c4c4 0%,#676767 100%);
+		overflow: hidden;
+		margin: 0 auto;
+	}
+
+	.welcome-message{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 90px;
+		width: 400px;
+		margin-top: -45px;
+		margin-left: -200px;
+		font-size: 70px;
+		font-weight: bold;
+		color: #FFF;
+		font-family: Arial, Helvetica, sans-serif;
+		display: none;
+	}
+
+	.lock-dial{
+		height: 120px;
+		width: 68px;
+		margin-left: 11px;
+		background: -webkit-linear-gradient(top, #8c9093 0%,#b6babd 9%,#ccd2d6 18%,#ffffff 55%,#ccd2d6 82%,#b6babd 91%,#8c9093 100%);
+		background: linear-gradient(to bottom, #8c9093 0%,#b6babd 9%,#ccd2d6 18%,#ffffff 55%,#ccd2d6 82%,#b6babd 91%,#8c9093 100%);
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+		float: left;
+		position: relative;
+		cursor: move;
+	}
+
+	#lock-wrapper .lock-dial ul{
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		list-style: none;
+		font-size: 53px;
+		line-height: 70px;
+		color: #414f6b;
+		text-shadow: 0 -2px 0 #212c42;
+		-webkit-user-select: none;  /* Chrome all / Safari all */
+		-moz-user-select: none;     /* Firefox all */
+		-ms-user-select: none;
+		transition: box-shadow .45s linear, color .25s linear;
+		-webkit-transition: box-shadow .45s linear, color .25s linear;
+	}
+
+	#lock-wrapper.unlocked .lock-dial ul{
+		color: green;
+		text-shadow: 0 0 5px #3f3;
+	}
+</style>
+
+<div id="main-lock">
+	Pista: piensa en nuestro nombre de equipo
+	<div id="lock-plate">
+		<span></span><span></span><span></span><span></span>
+		<div id="lock-wrapper">
+			<div class="lock-dial" id="dial-one"><ul data-combo-num="T"><li>A</li><li>Z</li><li>C</li><li>E</li><li>R</li><li>T</li><li>Y</li><li>V</li><li>S</li><li>M</li></ul></div>
+			<div class="lock-dial" id="dial-two"><ul data-combo-num="T"><li>A</li><li>Z</li><li>C</li><li>E</li><li>R</li><li>T</li><li>Y</li><li>V</li><li>S</li><li>M</li></ul></div>
+			<div class="lock-dial" id="dial-three"><ul data-combo-num="T"><li>A</li><li>Z</li><li>C</li><li>E</li><li>R</li><li>T</li><li>Y</li><li>V</li><li>S</li><li>M</li></ul></div>
+			<div class="lock-dial" id="dial-four"><ul data-combo-num="T"><li>A</li><li>Z</li><li>C</li><li>E</li><li>R</li><li>T</li><li>Y</li><li>V</li><li>S</li><li>M</li></ul></div>
+			<div class="lock-dial" id="dial-five"><ul data-combo-num="T"><li>A</li><li>Z</li><li>C</li><li>E</li><li>R</li><li>T</li><li>Y</li><li>V</li><li>S</li><li>M</li></ul></div>
+		</div>
+	</div>
+</div>
+<div>
+	Muy bien, la clave era [ C R A Z Y ]
+	<br>
+	Aquí irá el contenido de nuestra super pagina
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	!function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		var numbersMapping = {
+			0: "A",
+			1: "Z",
+			2: "C",
+			3: "E",
+			4: "R",
+			5: "T",
+			6: "Y",
+			7: "V",
+			8: "S",
+			9: "M"
+		};
+
+		var lettersMapping = {
+			"A": 0,
+			"Z": 1,
+			"C": 2,
+			"E": 3,
+			"R": 4,
+			"T": 5,
+			"Y": 6,
+			"V": 7,
+			"S": 8,
+			"M": 9
+		};
+
+		var comboArray = ["T", "T", "T", "T", "T"];
+		var combination = ["C", "R", "A", "Z", "Y"];
+		
+		var gridIncrement = $( ".lock-dial ul" ).css('line-height').replace('px', '')/2;
+		var numNums = $( ".lock-dial:eq(0) ul li" ).length;
+		var halfHeight = gridIncrement*numNums;
+		var initTop = -(halfHeight-gridIncrement);
+		
+		$( ".lock-dial ul" ).css('top', initTop);
+		
+		$( ".lock-dial ul" ).draggable({
+			grid: [ 0, gridIncrement ],
+			axis: 'y',
+			drag: function(){
+				var dragDir = $(this).css('top').replace('px', '') < initTop ? "up" : "down";
+				
+				if(dragDir == "up"){
+					var curNum = lettersMapping[$(this).find('li:last-child').text()] + 1;
+
+					if(curNum < 10){
+						curLetter = numbersMapping[curNum];
+						$(this).append('<li>'+curLetter+'</li>');
+					}else{
+						$(this).append('<li>A</li>');
+					};
+				}else{
+					var curNum = lettersMapping[$(this).find('li:first-child').text()] - 1;
+					var thisTop = parseInt($(this).css('margin-top').replace('px', ''));
+					
+					$(this).css({
+						marginTop: thisTop-(gridIncrement*2)
+					});
+					
+					if(curNum > -1){
+						curLetter = numbersMapping[curNum];	
+						$(this).prepend('<li>'+curLetter+'</li>');
+					}else{
+						$(this).prepend('<li>M</li>');
+					};
+				};
+			},
+			stop: function(){
+			
+				//MATHS		
+				var negOrPos = $(this).css('margin-top').replace('px', '') > 0 ? 1 : -1;
+				var thisTopTotal = parseInt($(this).css('top').replace('px', '')) + Math.abs(initTop);
+				var marginMinified = parseInt(Math.abs($(this).css('margin-top').replace('px', ''))) - thisTopTotal;
+				var numIncs = Math.floor(marginMinified/(halfHeight*2));
+				var totalDif = numIncs*(halfHeight*2);
+				var topTen = (marginMinified - totalDif)*negOrPos;
+				var activeIndex = Math.abs(topTen/(gridIncrement*2)) + (halfHeight/(gridIncrement*2));
+				
+				$(this).attr("data-combo-num", $(this).find('li').eq(activeIndex).text()).css({
+					top: -315,
+					marginTop: topTen
+				}).find('li').slice(20).remove();
+				
+				for(var i=0; i<$( ".lock-dial ul" ).length; i++){
+					comboArray[i] = $( ".lock-dial ul:eq("+i+")" ).attr("data-combo-num");
+				}
+				
+				if(comboArray == ""+combination){
+					$('.lock-dial ul').draggable('disable');
+					$('#lock-wrapper').addClass("unlocked");
+					$('.lock-dial').each(function(){
+						var $this = $(this);
+						$this.find('ul').delay(400).css('color', '#0f0').fadeOut(function(){
+							$this.animate({
+								marginTop: 150
+							}, function(){
+								$('#main-lock').fadeOut();
+							});
+						});
+					});
+				}
+			}
+		});
+
+	})
+</script>
